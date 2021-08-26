@@ -1,14 +1,17 @@
-package com.company;
-
 import java.io.IOException;
 import java.net.*;
-import java.io.*;
 
-public class client {
+public class client extends User_Interface {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        Socket s = new Socket("localhost", 4545);
+
+        User_Interface.launch();
 
     }
+
+    public static void conect_socket() throws IOException {
+        Socket s = new Socket("localhost", 4545);
+    }
+
 }
