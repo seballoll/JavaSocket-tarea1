@@ -16,6 +16,7 @@ public class User_Interface extends Application {
 static CharSequence price_g;
 static CharSequence weight_g;
 static CharSequence tax_g;
+static CharSequence tax_return = "0";
 
 
     @Override
@@ -25,13 +26,15 @@ static CharSequence tax_g;
         Label weight_label = new Label("inserte el peso");
         TextField weight = new TextField("peso");
         Label tax_label = new Label("inserte el % de impuesto");
-        TextField tax = new TextField("% impuesto");
+        TextField tax = new TextField("%impuesto");
+        String tax_r_s = tax_return.toString();
+        Label tax_return = new Label("El impuesto es de = " + tax_r_s);
 
         Button send_button = new Button("enviar");
         send_button.setOnAction(actionEvent -> {
             try {
                 send();
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         });
@@ -39,7 +42,8 @@ static CharSequence tax_g;
         GridPane layout = new GridPane();
 
 
-        layout.add(send_button,2,4);
+        layout.add(send_button,2,3);
+        layout.add(tax_return,2,4);
         layout.add(price_label,1,0);
         layout.add(price,1,2);
         layout.add(weight_label,2,0);
@@ -62,10 +66,10 @@ static CharSequence tax_g;
         launch();
 
     }
-    public static void send() throws IOException  {
+    public static void send() throws IOException, InterruptedException {
 
 
-        client.conect_socket(price_g.toString(),weight_g,tax_g);
+        client.conect_socket(price_g.toString(),weight_g.toString(),tax_g.toString());
 
         System.out.println("button pressed");
     }

@@ -9,15 +9,30 @@ public class client extends User_Interface {
 
     }
 
-    public static void conect_socket( String value, CharSequence weight,CharSequence tax) throws IOException {
+    public static void conect_socket( String value, String weight,String tax) throws IOException {
         Socket s = new Socket("localhost", 4545);
         DataInputStream din;
         DataOutputStream dout;
         System.out.println(value);
 
+        //+"/" + weight + "/" + tax
         PrintWriter WRT = new PrintWriter(s.getOutputStream());
-        WRT.println(value);
-        WRT.flush();
+        for (int i = 0;i <= 2; i++) {
+            if (i==0){
+                WRT.println(value);
+                WRT.flush();
+            }else if (i == 1){
+                WRT.println(weight);
+                WRT.flush();
+
+            } else {
+                WRT.println(tax);
+                WRT.flush();
+            }
+
+        }
+
+
 
 
 
