@@ -13,6 +13,9 @@ import java.io.IOException;
 
 public class User_Interface extends Application {
 
+static CharSequence price_g;
+static CharSequence weight_g;
+static CharSequence tax_g;
 
 
     @Override
@@ -48,6 +51,9 @@ public class User_Interface extends Application {
 
         stage.setScene(screen);
         stage.show();
+        price_g =  price.getCharacters();
+        weight_g = weight.getCharacters();
+        tax_g   = tax.getCharacters();
 
 
     }
@@ -56,9 +62,10 @@ public class User_Interface extends Application {
         launch();
 
     }
-    public static void send() throws IOException {
+    public static void send() throws IOException  {
 
-        client.conect_socket();
+
+        client.conect_socket(price_g.toString(),weight_g,tax_g);
 
         System.out.println("button pressed");
     }
