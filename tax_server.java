@@ -2,7 +2,9 @@ import java.io.*;
 import java.net.*;
 
 public class tax_server {
-//flags para leer los valores en orden y variables globales para las operaciones
+    /**
+     * flags para leer los valores en orden y variables globales para las operaciones
+     */
     static int value ;
     static boolean value_flag = true;
     static int weight;
@@ -10,26 +12,37 @@ public class tax_server {
     static int tax;
     static int tax_calculated;
     static boolean Ready_tax = false;
-//variable global para ambos socket, permite usarlos en todos los metodos
+    /**
+     * variable global para ambos socket, permite usarlos en todos los metodos
+     */
     static ServerSocket ss;
     static Socket s ;
 
-
+    /**
+     * metodo para iniciar el servidor y aceptar al cliente
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
-        //declaraciones para la coneccion del servidor y el cliente
+        /**
+         * declaraciones para la coneccion del servidor y el cliente
+         */
         final int port_num = 4545;
         ss = new ServerSocket(port_num);
         System.out.println("server online");//notifica al activar el socket del servidor
         s = ss.accept();
         System.out.println("client conected");//notifica cuando un cliente se conecta
 
-        //crea un lector de texto utilizando los canales del socket
+        /**
+         * crea un lector de texto utilizando los canales del socket
+         */
         InputStreamReader RD = new InputStreamReader(s.getInputStream());
         BufferedReader BFRD = new BufferedReader(RD);
 
 
         try {
-            //loop para obtener todos los datos del cliente
+            /**
+             * loop para obtener todos los datos del cliente
+             */
             while(true) {
 
                 String client_info = BFRD.readLine();//el buffered reader lee el texto y lo guarda en la variable
@@ -57,14 +70,25 @@ public class tax_server {
         }
 
     }
-    //metodo para calcular los impuestos del cliente segun el precio, peso y porcentaje
+
+    /**
+     * metodo para calcular los impuestos del cliente segun el precio, peso y porcentaje
+     * @param value precio que introdujo el usuario
+     * @param weight peso que introdujo el usuario
+     * @param tax porcentaje que introdujo el usuario
+     * @return devuelve el valor del impuesto segun los parametros
+     */
     public static int calculate_tax ( int value, int weight,int tax) {
         int price_tax = (value * tax)/ 100;
         double weight_tax = (weight * 0.15);
         return (int) Math.round(price_tax + weight_tax);//suma de todas las operaciones y se redondea
     }//se redondea para evitar posibles faltas de pago
 
-    //metodo para devolver al cliente el impuesto calculado
+    /**
+     * metodo para devolver al cliente el impuesto calculado
+     * @param cal_tax el impuesto calculado en calculate_tax
+     * @throws IOException
+     */
     public static void send_tax(String cal_tax) throws IOException {
         System.out.println(cal_tax);
         PrintWriter PWRT = new PrintWriter(s.getOutputStream());//se crea un writer en el canal del socket

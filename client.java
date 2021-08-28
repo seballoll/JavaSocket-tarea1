@@ -3,15 +3,27 @@ import java.net.*;
 
 public class client extends User_Interface {
 
-//socket global para usar en todos los metodos
-static Socket s;
+    /**
+     * variable global para usar en todos los metodos
+     */
+    static Socket s;
 
+    /**
+     * metodo para iniciar la interfaz grafica desde el cliente
+     */
     public static void main(String[] args) {
-        //desde aqui se inicia la interfaz grafica
+
         User_Interface.launch();
 
     }
-    //metodo para conectar el socket al servidor, ademas recibe los valores que introduce el usuario
+
+    /**
+     * metodo para conectar el socket al servidor, ademas recibe los valores que introduce el usuario
+     * @param value es el precio del objeto
+     * @param weight es el peso del objeto
+     * @param tax el porcentaje de impuesto actual
+     * @throws IOException
+     */
     public static void conect_socket( String value, String weight,String tax) throws IOException {
         s = new Socket("localhost", 4545);
         //revision de valores escritos por el cliente en la consola
@@ -22,7 +34,13 @@ static Socket s;
         Write(value,weight,tax);
         }
 
-//metodo para enviar los datos en orden
+    /**
+     * metodo para enviar los datos en orden hasta el servidor
+     * @param value precio
+     * @param weight peso
+     * @param tax porcentaje de impuesto
+     * @throws IOException
+     */
     public static void Write(String value, String weight,String tax) throws IOException {
         //crea un writer que envia los valores como string a traves del canal del socket
         PrintWriter WRT = new PrintWriter(s.getOutputStream());
@@ -43,7 +61,11 @@ static Socket s;
 
     }
     }
-    //metodo para leer el mensaje del servido que trae el impuesto calculado
+
+    /**
+     * metodo para leer el mensaje del servido que trae el impuesto calculado
+     * @throws IOException
+     */
     public static void Read() throws IOException {
         //se crea un reader conectado al canal del socket
         InputStreamReader RD = new InputStreamReader(s.getInputStream());
