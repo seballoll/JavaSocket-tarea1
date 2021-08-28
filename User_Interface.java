@@ -13,9 +13,9 @@ import java.io.IOException;
 
 public class User_Interface extends Application {
 
-    /**
-     * variables globales para obtener y cambiar los valores en la interfaz
-     */
+
+     // variables globales para obtener y cambiar los valores en la interfaz
+
     static CharSequence price_g;
 static CharSequence weight_g;
 static CharSequence tax_g;
@@ -58,9 +58,9 @@ static CharSequence tax_return = "" ;
         } );
         //forma en la que se agregan objetos a la pantalla
         GridPane layout = new GridPane();
-        /**
-         * agregando objetos a la pantalla con sus respectivas coordenadas en una cuadricula
-         */
+
+         // agregando objetos a la pantalla con sus respectivas coordenadas en una cuadricula
+
         layout.add(send_button,2,3);
         layout.add(refresh_button,3,3);
         layout.add(tax_return_L,2,4);
@@ -74,9 +74,9 @@ static CharSequence tax_return = "" ;
         Scene screen = new Scene(layout, 500, 250);
         stage.setScene(screen);
         stage.show();
-        /**
-         * obtiene los valores de las cajas de texto al llamar la variable
-         */
+
+         //obtiene los valores de las cajas de texto al llamar la variable
+
         price_g =  price.getCharacters();
         weight_g = weight.getCharacters();
         tax_g   = tax.getCharacters();
@@ -96,9 +96,9 @@ static CharSequence tax_return = "" ;
     public static void send() throws IOException, InterruptedException {
 
         System.out.println("datos enviados al servidor");
-        /**
-         * llama al metodo conect_socket con la informacion que introdujo el usuario
-         */
+
+         // llama al metodo conect_socket con la informacion que introdujo el usuario
+
         client.conect_socket(price_g.toString(),weight_g.toString(),tax_g.toString());
 
     }

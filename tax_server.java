@@ -2,9 +2,9 @@ import java.io.*;
 import java.net.*;
 
 public class tax_server {
-    /**
-     * flags para leer los valores en orden y variables globales para las operaciones
-     */
+
+      //flags para leer los valores en orden y variables globales para las operaciones
+
     static int value ;
     static boolean value_flag = true;
     static int weight;
@@ -12,9 +12,9 @@ public class tax_server {
     static int tax;
     static int tax_calculated;
     static boolean Ready_tax = false;
-    /**
-     * variable global para ambos socket, permite usarlos en todos los metodos
-     */
+
+      //variable global para ambos socket, permite usarlos en todos los metodos
+
     static ServerSocket ss;
     static Socket s ;
 
@@ -23,26 +23,25 @@ public class tax_server {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        /**
-         * declaraciones para la coneccion del servidor y el cliente
-         */
+
+         //declaraciones para la coneccion del servidor y el cliente
+
         final int port_num = 4545;
         ss = new ServerSocket(port_num);
         System.out.println("server online");//notifica al activar el socket del servidor
         s = ss.accept();
         System.out.println("client conected");//notifica cuando un cliente se conecta
 
-        /**
-         * crea un lector de texto utilizando los canales del socket
-         */
+
+         // crea un lector de texto utilizando los canales del socket
+
         InputStreamReader RD = new InputStreamReader(s.getInputStream());
         BufferedReader BFRD = new BufferedReader(RD);
 
 
         try {
-            /**
-             * loop para obtener todos los datos del cliente
-             */
+             // loop para obtener todos los datos del cliente
+
             while(true) {
 
                 String client_info = BFRD.readLine();//el buffered reader lee el texto y lo guarda en la variable

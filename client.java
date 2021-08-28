@@ -3,14 +3,14 @@ import java.net.*;
 
 public class client extends User_Interface {
 
-    /**
-     * variable global para usar en todos los metodos
-     */
+
+    //  variable global para usar en todos los metodos
+
     static Socket s;
 
-    /**
-     * metodo para iniciar la interfaz grafica desde el cliente
-     */
+
+     // metodo para iniciar la interfaz grafica desde el cliente
+
     public static void main(String[] args) {
 
         User_Interface.launch();
